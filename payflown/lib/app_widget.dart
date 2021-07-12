@@ -4,6 +4,7 @@ import 'package:payflown/modules/barcode_scanner/barcode_scanner_page.dart';
 import 'package:payflown/modules/home/homepage.dart';
 import 'package:payflown/modules/insert_boleto/insert_boleto_page.dart';
 import 'package:payflown/modules/splash/splash_page.dart';
+import 'package:payflown/shared/models/user_model.dart';
 import 'modules/login/login_page.dart';
 import 'shared/themes/app_colors.dart';
 
@@ -27,10 +28,13 @@ class AppWidget extends StatelessWidget {
       initialRoute: "/splash",
       routes: {
         "/splash": (context) => SplashPage(),
-        "/home": (context) => HomePage(),
+        "/home": (context) => HomePage(user: ModalRoute.of(context)!.settings.arguments as UserModel,),
         "/login": (context) => LoginPage(),
         "/barcode_scanner": (context) => BarcodeScannerPage(),
-        "/insert_boleto": (context) => InsertBoletoPage()
+        "/insert_boleto": (context) => InsertBoletoPage(
+
+          barcode: ModalRoute.of(context)!= null ? ModalRoute.of(context)!.settings.arguments.toString() : null,)
+          
 
       },
     );
